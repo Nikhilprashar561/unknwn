@@ -1,0 +1,72 @@
+:root {
+  --unknkn-bg: #F3EEE6;
+  --unknkn-ink: #171311;
+  --unknkn-ink-alt: #1B1512;
+  --unknkn-red: #7C1405;
+  --unknkn-red-hover: #8E1A06;
+  --unknkn-red-dark: #6A1208;
+  --unknkn-sand: #E5D9CF;
+  --unknkn-dark: #171311;
+  --unknkn-accent-line: #C0614C;
+  --unknkn-nav-h: 68px;
+
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-bodoni: 'Bodoni Moda', Georgia, serif;
+  --font-archivo: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--unknkn-bg);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--unknkn-bg);
+  color: var(--unknkn-ink);
+  font-family: var(--font-archivo);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--unknkn-red);
+  text-decoration: none;
+  transition: color 240ms ease;
+}
+
+a:hover {
+  color: var(--unknkn-ink);
+}
+
+::selection {
+  background: var(--unknkn-red);
+  color: var(--unknkn-bg);
+}
+
+/* Reusable film grain overlay */
+.unknkn-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Serif display helper classes */
+.font-playfair {
+  font-family: var(--font-playfair);
+}
+
+.font-bodoni {
+  font-family: var(--font-bodoni);
+}
+
+.font-archivo {
+  font-family: var(--font-archivo);
+}
