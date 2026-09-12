@@ -149,9 +149,10 @@ export default function Scene03Curation() {
                 margin: 0,
                 fontFamily: "var(--font-playfair), serif",
                 fontWeight: 600,
-                fontSize: "clamp(36px, 4.8vw, 68px)",
+                fontSize: "clamp(30px, 4.8vw, 68px)",
                 lineHeight: 1.0,
                 letterSpacing: "-0.03em",
+                wordBreak: "break-word",
               }}
             >
               WE FIND THE
@@ -177,8 +178,8 @@ export default function Scene03Curation() {
               }}
             >
               <span>You tell us what matters.</span>
-              <span style={{ paddingLeft: "2.6em" }}>We find the connection.</span>
-              <span style={{ paddingLeft: "5.2em" }}>We take care of the date.</span>
+              <span style={{ paddingLeft: "clamp(0.8em, 2.6vw, 2.6em)" }}>We find the connection.</span>
+              <span style={{ paddingLeft: "clamp(1.6em, 5.2vw, 5.2em)" }}>We take care of the date.</span>
             </div>
 
             <a

@@ -11,19 +11,29 @@ export default function Scene05Footer() {
     const grain = grainRef.current;
     if (!root) return;
 
-    let rafId: number;
+    let isVisible = false;
+    let rafId = 0;
     let t0: number | null = null;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (grain && !reduce) {
+    const startDrift = () => {
+      if (rafId || !grain || reduce) return;
       const drift = (t: number) => {
+        if (!isVisible) return;
         if (t0 === null) t0 = t;
         const s = (t - t0) / 1000;
         grain.style.transform = `translate3d(${Math.cos(s * 0.035) * 7}px,${Math.sin(s * 0.05) * 6}px,0)`;
         rafId = requestAnimationFrame(drift);
       };
       rafId = requestAnimationFrame(drift);
-    }
+    };
+
+    const stopDrift = () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+    };
 
     const reveal = Array.from(root.querySelectorAll<HTMLElement>('[data-el="rev"]'));
     if (!reduce) {
@@ -43,24 +53,32 @@ export default function Scene05Footer() {
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver(
         (ents) => {
-          if (ents.some((x) => x.isIntersecting)) {
-            show();
-            io.disconnect();
-          }
+          ents.forEach((x) => {
+            if (x.isIntersecting) {
+              isVisible = true;
+              show();
+              startDrift();
+            } else {
+              isVisible = false;
+              stopDrift();
+            }
+          });
         },
-        { threshold: 0.08 }
+        { threshold: 0.06 }
       );
       io.observe(root);
       return () => {
-        cancelAnimationFrame(rafId);
+        stopDrift();
         io.disconnect();
       };
     } else {
+      isVisible = true;
       show();
+      startDrift();
     }
 
     return () => {
-      cancelAnimationFrame(rafId);
+      stopDrift();
     };
   }, []);
 
@@ -118,15 +136,16 @@ export default function Scene05Footer() {
             margin: "9vh 0 0",
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "clamp(44px, 9.2vw, 150px)",
+            fontSize: "clamp(28px, 8.8vw, 140px)",
             lineHeight: 0.94,
             letterSpacing: "-0.04em",
             color: "#F3EEE6",
+            wordBreak: "break-word",
           }}
         >
           THE UNKNOWN
           <br />
-          <span style={{ display: "inline-block", paddingLeft: "0.34em", fontStyle: "italic", fontWeight: 500 }}>
+          <span style={{ display: "inline-block", paddingLeft: "clamp(0.1em, 1.5vw, 0.34em)", fontStyle: "italic", fontWeight: 500 }}>
             IS WORTH MEETING.
           </span>
         </h2>
@@ -138,8 +157,8 @@ export default function Scene05Footer() {
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",
-            justifyContent: "flex-end",
-            gap: "clamp(24px, 3vw, 56px)",
+            justifyContent: "space-between",
+            gap: "clamp(18px, 3vw, 40px)",
             margin: "8vh 0 0",
           }}
         >
@@ -165,11 +184,11 @@ export default function Scene05Footer() {
               color: "#7C1405",
               borderRadius: "2px",
               fontFamily: "var(--font-archivo), sans-serif",
-              fontSize: "12px",
+              fontSize: "clamp(11px, 1.1vw, 12px)",
               fontWeight: 500,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              padding: "1.45em 1.9em",
+              padding: "1.25em clamp(1.4em, 3.5vw, 1.9em)",
               transition: "transform 280ms cubic-bezier(0.22, 1, 0.36, 1), background 280ms ease, gap 280ms ease",
             }}
             onMouseEnter={(e) => {
@@ -194,8 +213,8 @@ export default function Scene05Footer() {
           data-el="rev"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))",
-            gap: "clamp(28px, 4vw, 64px)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))",
+            gap: "clamp(24px, 4vw, 64px)",
             margin: "5vh 0 0",
             alignItems: "start",
           }}

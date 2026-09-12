@@ -50,57 +50,56 @@ export default function Scene02() {
         const el = e(n);
         if (el) Object.assign(el.style, s);
       };
-      set("qWhat", { fontSize: "17vw", left: "6vw", top: "14vh" });
-      set("qIs", { fontSize: "13vw", left: "40vw", top: "26vh" });
-      set("qUnknown", { fontSize: "25vw", left: "-2vw", top: "38vh" });
-      set("who", { fontSize: "34vw", top: "14vh", left: "4vw" });
-      set("portraitA", { left: "22vw", top: "38vh", width: "78vw", height: "56vh" });
-      set("where", { fontSize: "28vw", top: "22vh", left: "5vw" });
-      set("when", { fontSize: "32vw", top: "12vh", left: "4vw" });
-      set("seven", { fontSize: "24vw", top: "38vh" });
-      set("how", { fontSize: "38vw", top: "22vh", left: "6vw" });
-      set("notLike", { fontSize: "17vw", top: "34vh", left: "6vw", whiteSpace: "normal" });
-      set("soWhat", { fontSize: "15vw", top: "34vh", left: "6vw", whiteSpace: "normal" });
-      set("curate", { fontSize: "13vw", top: "20vh", left: "6vw" });
+      set("qWhat", { fontSize: "16vw", left: "6vw", top: "14vh" });
+      set("qIs", { fontSize: "12vw", left: "38vw", top: "26vh" });
+      set("qUnknown", { fontSize: "22vw", left: "-1vw", top: "38vh" });
+      set("who", { fontSize: "28vw", top: "14vh", left: "4vw" });
+      set("portraitA", { left: "18vw", top: "36vh", width: "78vw", height: "56vh" });
+      set("where", { fontSize: "24vw", top: "20vh", left: "5vw" });
+      set("when", { fontSize: "26vw", top: "12vh", left: "4vw" });
+      set("seven", { fontSize: "18vw", top: "38vh" });
+      set("how", { fontSize: "26vw", top: "20vh", left: "6vw" });
+      set("notLike", { fontSize: "11.5vw", top: "34vh", left: "6vw", maxWidth: "88vw", whiteSpace: "normal" });
+      set("soWhat", { fontSize: "11vw", top: "34vh", left: "6vw", maxWidth: "88vw", whiteSpace: "normal" });
+      set("curate", { fontSize: "11vw", top: "20vh", left: "6vw", maxWidth: "88vw" });
       const cu = e("curate");
       if (cu) {
-        (cu.children[0] as HTMLElement).style.whiteSpace = "nowrap";
+        (cu.children[0] as HTMLElement).style.whiteSpace = "normal";
         Object.assign((cu.children[1] as HTMLElement).style, {
           paddingLeft: "0",
-          fontSize: "1.1em",
-          whiteSpace: "nowrap",
+          fontSize: "1.05em",
+          whiteSpace: "normal",
         });
       }
-      set("manifesto", { top: "58vh" });
-      set("whereL", { right: "5vw", bottom: "3vh", top: "auto", left: "auto", maxWidth: "76vw" });
-      set("sysYou", { fontSize: "28vw" });
-      set("sysVibe", { fontSize: "19vw" });
-      set("sysCur", { fontSize: "15vw", whiteSpace: "normal" });
-      set("sysSomeone", { fontSize: "20vw", left: "6vw" });
-      set("sysPlace", { fontSize: "20vw", top: "34vh" });
-      set("sysDate", { fontSize: "26vw" });
-      set("portraitB", { left: "26vw", top: "40vh", width: "74vw", height: "52vh" });
+      set("manifesto", { top: "56vh", left: "6vw", maxWidth: "88vw" });
+      const mf = e("manifesto");
+      if (mf && mf.children) {
+        Array.from(mf.children).forEach((sp, idx) => {
+          (sp as HTMLElement).style.paddingLeft = idx === 0 ? "0" : idx === 1 ? "1.2em" : "2.4em";
+        });
+      }
+      set("whereL", { right: "5vw", bottom: "3vh", top: "auto", left: "auto", maxWidth: "82vw" });
+      set("sysYou", { fontSize: "20vw" });
+      set("sysVibe", { fontSize: "15vw" });
+      set("sysCur", { fontSize: "12vw", whiteSpace: "normal", maxWidth: "88vw" });
+      set("sysSomeone", { fontSize: "16vw", left: "6vw", maxWidth: "88vw" });
+      set("sysPlace", { fontSize: "16vw", top: "34vh", maxWidth: "88vw" });
+      set("sysDate", { fontSize: "20vw" });
+      set("portraitB", { left: "22vw", top: "38vh", width: "74vw", height: "52vh" });
       set("envB", { left: "4vw", top: "20vh", width: "84vw", height: "54vh" });
-      set("dateB", { left: "10vw", top: "18vh", width: "80vw", height: "58vh" });
-      set("fin1", { fontSize: "11vw", top: "30vh", left: "7vw", width: "86vw" });
-      set("fin2", { fontSize: "12.5vw", top: "28vh", left: "7vw", width: "86vw" });
-      set("thats", { fontSize: "14vw", top: "38vh", left: "7vw" });
-      set("finSub", { left: "7vw", top: "56vh" });
-      set("next", { left: "7vw" });
+      set("dateB", { left: "8vw", top: "18vh", width: "84vw", height: "58vh" });
+      set("fin1", { fontSize: "7.5vw", top: "30vh", left: "6vw", width: "88vw", maxWidth: "88vw" });
+      set("fin2", { fontSize: "8.5vw", top: "28vh", left: "6vw", width: "88vw", maxWidth: "88vw" });
+      set("thats", { fontSize: "10vw", top: "38vh", left: "6vw", maxWidth: "88vw", whiteSpace: "normal" });
+      set("finSub", { left: "6vw", top: "56vh", maxWidth: "88vw" });
+      set("next", { left: "6vw", maxWidth: "88vw" });
       const nx = e("next");
-      if (nx && nx.children[1]) (nx.children[1] as HTMLElement).style.fontSize = "8vw";
-      times.forEach((t) => {
-        t.style.fontSize = `${parseFloat(t.style.fontSize) * 1.8}vw`;
-      });
-      mechs.forEach((m) => {
-        m.style.fontSize = `${parseFloat(m.style.fontSize) * 1.7}vw`;
-      });
-      ints.forEach((w) => {
-        w.style.fontSize = `${parseFloat(w.style.fontSize) * 1.8}vw`;
-      });
+      if (nx && nx.children[1]) (nx.children[1] as HTMLElement).style.fontSize = "6vw";
       envs.forEach((n) => {
-        n.style.width = `${parseFloat(n.style.width) * 1.7}vw`;
-        n.style.height = `${parseFloat(n.style.height) * 1.1}vh`;
+        const curW = parseFloat(n.style.width || "20");
+        const curH = parseFloat(n.style.height || "30");
+        if (!isNaN(curW)) n.style.width = `${curW * 1.5}vw`;
+        if (!isNaN(curH)) n.style.height = `${curH * 1.05}vh`;
       });
       envs.slice(3).forEach((n) => {
         n.style.display = "none";
@@ -377,6 +376,7 @@ export default function Scene02() {
             background: "#7C1405",
             opacity: 0,
             zIndex: 1,
+            willChange: "opacity",
           }}
         />
         <div
@@ -387,6 +387,7 @@ export default function Scene02() {
             background: "#171311",
             opacity: 0,
             zIndex: 2,
+            willChange: "opacity",
           }}
         />
         <div
@@ -438,11 +439,12 @@ export default function Scene02() {
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "9vw",
+            fontSize: "clamp(34px, 9vw, 125px)",
             lineHeight: 0.82,
             letterSpacing: "-0.02em",
             color: "#F3EEE6",
             whiteSpace: "nowrap",
+            willChange: "transform, opacity",
           }}
         >
           WHAT
@@ -451,18 +453,19 @@ export default function Scene02() {
           data-el="qIs"
           style={{
             position: "absolute",
-            left: "41vw",
+            left: "clamp(30vw, 41vw, 45vw)",
             top: "27vh",
             zIndex: 20,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontStyle: "italic",
             fontWeight: 500,
-            fontSize: "7vw",
+            fontSize: "clamp(28px, 7vw, 98px)",
             lineHeight: 0.82,
             letterSpacing: "-0.02em",
             color: "#F3EEE6",
             whiteSpace: "nowrap",
+            willChange: "transform, opacity",
           }}
         >
           IS
@@ -471,17 +474,18 @@ export default function Scene02() {
           data-el="qUnknown"
           style={{
             position: "absolute",
-            left: "-4vw",
+            left: "-2vw",
             top: "41vh",
             zIndex: 20,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "19vw",
+            fontSize: "clamp(46px, 19vw, 260px)",
             lineHeight: 0.78,
             letterSpacing: "-0.045em",
             color: "#F3EEE6",
             whiteSpace: "nowrap",
+            willChange: "transform, opacity",
           }}
         >
           UNKNOWN?
@@ -495,11 +499,12 @@ export default function Scene02() {
             zIndex: 21,
             opacity: 0,
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "13px",
+            fontSize: "clamp(11px, 1.1vw, 14px)",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           More than a name.
@@ -516,11 +521,12 @@ export default function Scene02() {
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "22vw",
+            fontSize: "clamp(54px, 22vw, 310px)",
             lineHeight: 0.8,
             letterSpacing: "-0.04em",
             color: "#F3EEE6",
             whiteSpace: "nowrap",
+            willChange: "transform, opacity",
           }}
         >
           WHO
@@ -537,6 +543,7 @@ export default function Scene02() {
             opacity: 0,
             overflow: "hidden",
             background: "url('/images/portrait-a.png') center / cover no-repeat",
+            willChange: "transform, opacity",
           }}
         />
         <div
@@ -548,11 +555,12 @@ export default function Scene02() {
             zIndex: 22,
             opacity: 0,
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "13px",
+            fontSize: "clamp(11px, 1.1vw, 14px)",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           Someone you've never met.
@@ -566,11 +574,12 @@ export default function Scene02() {
             zIndex: 22,
             opacity: 0,
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "13px",
+            fontSize: "clamp(11px, 1.1vw, 14px)",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           Someone you wouldn't have searched for.
@@ -587,36 +596,38 @@ export default function Scene02() {
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "20vw",
+            fontSize: "clamp(50px, 20vw, 280px)",
             lineHeight: 0.8,
             letterSpacing: "-0.04em",
             color: "#F3EEE6",
             whiteSpace: "nowrap",
+            willChange: "transform, opacity",
           }}
         >
           WHERE
         </div>
-        <div data-el="env" style={{ position: "absolute", left: "-8vw", top: "4vh", width: "34vw", height: "52vh", zIndex: 18, opacity: 0, overflow: "hidden", background: "url('/images/env-01.png') center / cover no-repeat" }} />
-        <div data-el="env" style={{ position: "absolute", left: "58vw", top: "-6vh", width: "26vw", height: "44vh", zIndex: 19, opacity: 0, overflow: "hidden", background: "url('/images/env-02.png') center / cover no-repeat" }} />
-        <div data-el="env" style={{ position: "absolute", left: "30vw", top: "48vh", width: "30vw", height: "40vh", zIndex: 22, opacity: 0, overflow: "hidden", background: "url('/images/env-03.png') center / cover no-repeat" }} />
-        <div data-el="env" style={{ position: "absolute", left: "74vw", top: "46vh", width: "32vw", height: "42vh", zIndex: 19, opacity: 0, overflow: "hidden", background: "url('/images/env-04.png') center / cover no-repeat" }} />
-        <div data-el="env" style={{ position: "absolute", left: "8vw", top: "56vh", width: "20vw", height: "32vh", zIndex: 23, opacity: 0, overflow: "hidden", background: "url('/images/env-05.png') center / cover no-repeat" }} />
+        <div data-el="env" style={{ position: "absolute", left: "-8vw", top: "4vh", width: "34vw", height: "52vh", zIndex: 18, opacity: 0, overflow: "hidden", background: "url('/images/env-01.png') center / cover no-repeat", willChange: "transform, opacity" }} />
+        <div data-el="env" style={{ position: "absolute", left: "58vw", top: "-6vh", width: "26vw", height: "44vh", zIndex: 19, opacity: 0, overflow: "hidden", background: "url('/images/env-02.png') center / cover no-repeat", willChange: "transform, opacity" }} />
+        <div data-el="env" style={{ position: "absolute", left: "30vw", top: "48vh", width: "30vw", height: "40vh", zIndex: 22, opacity: 0, overflow: "hidden", background: "url('/images/env-03.png') center / cover no-repeat", willChange: "transform, opacity" }} />
+        <div data-el="env" style={{ position: "absolute", left: "74vw", top: "46vh", width: "32vw", height: "42vh", zIndex: 19, opacity: 0, overflow: "hidden", background: "url('/images/env-04.png') center / cover no-repeat", willChange: "transform, opacity" }} />
+        <div data-el="env" style={{ position: "absolute", left: "8vw", top: "56vh", width: "20vw", height: "32vh", zIndex: 23, opacity: 0, overflow: "hidden", background: "url('/images/env-05.png') center / cover no-repeat", willChange: "transform, opacity" }} />
         <div
           data-el="whereL"
           style={{
             position: "absolute",
             right: "5vw",
             bottom: "5vh",
-            maxWidth: "46vw",
+            maxWidth: "clamp(260px, 46vw, 600px)",
             textAlign: "right",
             zIndex: 24,
             opacity: 0,
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "13px",
+            fontSize: "clamp(11px, 1.1vw, 14px)",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           Somewhere you wouldn't have thought to look.
@@ -633,23 +644,24 @@ export default function Scene02() {
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "21vw",
+            fontSize: "clamp(52px, 21vw, 290px)",
             lineHeight: 0.8,
             letterSpacing: "-0.04em",
             color: "#F3EEE6",
             whiteSpace: "nowrap",
+            willChange: "transform, opacity",
           }}
         >
           WHEN
         </div>
-        <div data-el="time" style={{ position: "absolute", left: "8vw", top: "66vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "5vw", letterSpacing: "-0.01em", color: "#F3EEE6", whiteSpace: "nowrap" }}>06:42 PM</div>
-        <div data-el="time" style={{ position: "absolute", left: "62vw", top: "22vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontStyle: "italic", fontWeight: 500, fontSize: "4vw", letterSpacing: "-0.01em", color: "#F3EEE6", whiteSpace: "nowrap" }}>07:15 PM</div>
-        <div data-el="time" style={{ position: "absolute", left: "33vw", top: "82vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-archivo), sans-serif", fontWeight: 500, fontSize: "2.4vw", letterSpacing: "0.16em", color: "#F3EEE6", whiteSpace: "nowrap" }}>SATURDAY</div>
-        <div data-el="time" style={{ position: "absolute", left: "70vw", top: "58vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 600, fontSize: "6vw", letterSpacing: "-0.02em", color: "#F3EEE6", whiteSpace: "nowrap" }}>TONIGHT</div>
-        <div data-el="time" style={{ position: "absolute", left: "12vw", top: "40vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-archivo), sans-serif", fontWeight: 500, fontSize: "2.2vw", letterSpacing: "0.16em", color: "#F3EEE6", whiteSpace: "nowrap" }}>NEXT WEEK</div>
-        <div data-el="time" style={{ position: "absolute", left: "48vw", top: "8vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "4.4vw", letterSpacing: "-0.01em", color: "#F3EEE6", whiteSpace: "nowrap" }}>08:30 PM</div>
-        <div data-el="time" style={{ position: "absolute", left: "78vw", top: "82vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontStyle: "italic", fontWeight: 500, fontSize: "5.2vw", letterSpacing: "-0.01em", color: "#F3EEE6", whiteSpace: "nowrap" }}>FRIDAY</div>
-        <div data-el="time" style={{ position: "absolute", left: "2vw", top: "86vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "4.6vw", letterSpacing: "-0.01em", color: "#F3EEE6", whiteSpace: "nowrap" }}>7:00 PM</div>
+        <div data-el="time" style={{ position: "absolute", left: "8vw", top: "66vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "clamp(20px, 5vw, 68px)", letterSpacing: "-0.01em", color: "#F3EEE6", whiteSpace: "nowrap" }}>06:42 PM</div>
+        <div data-el="time" style={{ position: "absolute", left: "62vw", top: "22vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(18px, 4vw, 56px)", letterSpacing: "-0.01em", color: "#F3EEE6", whiteSpace: "nowrap" }}>07:15 PM</div>
+        <div data-el="time" style={{ position: "absolute", left: "33vw", top: "82vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-archivo), sans-serif", fontWeight: 500, fontSize: "clamp(14px, 2.4vw, 36px)", letterSpacing: "0.16em", color: "#F3EEE6", whiteSpace: "nowrap" }}>SATURDAY</div>
+        <div data-el="time" style={{ position: "absolute", left: "70vw", top: "58vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 600, fontSize: "clamp(22px, 6vw, 84px)", letterSpacing: "-0.02em", color: "#F3EEE6", whiteSpace: "nowrap" }}>TONIGHT</div>
+        <div data-el="time" style={{ position: "absolute", left: "12vw", top: "40vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-archivo), sans-serif", fontWeight: 500, fontSize: "clamp(14px, 2.2vw, 32px)", letterSpacing: "0.16em", color: "#F3EEE6", whiteSpace: "nowrap" }}>NEXT WEEK</div>
+        <div data-el="time" style={{ position: "absolute", left: "48vw", top: "8vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "clamp(18px, 4.4vw, 60px)", letterSpacing: "-0.01em", color: "#F3EEE6", whiteSpace: "nowrap" }}>08:30 PM</div>
+        <div data-el="time" style={{ position: "absolute", left: "78vw", top: "82vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(20px, 5.2vw, 72px)", letterSpacing: "-0.01em", color: "#F3EEE6", whiteSpace: "nowrap" }}>FRIDAY</div>
+        <div data-el="time" style={{ position: "absolute", left: "2vw", top: "86vh", zIndex: 19, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "clamp(18px, 4.6vw, 64px)", letterSpacing: "-0.01em", color: "#F3EEE6", whiteSpace: "nowrap" }}>7:00 PM</div>
         <div
           data-el="seven"
           style={{
@@ -662,10 +674,11 @@ export default function Scene02() {
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "15vw",
+            fontSize: "clamp(42px, 15vw, 210px)",
             lineHeight: 0.9,
             letterSpacing: "-0.04em",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           7:00 PM
@@ -681,11 +694,12 @@ export default function Scene02() {
             zIndex: 25,
             opacity: 0,
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "13px",
+            fontSize: "clamp(11px, 1.1vw, 14px)",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           The moment you actually meet.
@@ -702,29 +716,30 @@ export default function Scene02() {
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "24vw",
+            fontSize: "clamp(56px, 24vw, 330px)",
             lineHeight: 0.8,
             letterSpacing: "-0.045em",
             color: "#F3EEE6",
             whiteSpace: "nowrap",
+            willChange: "transform, opacity",
           }}
         >
           HOW
         </div>
         {["SWIPE", "LIKE", "MATCH", "CHAT", "WAIT", "REPEAT", "SWIPE", "MATCH", "LIKE", "WAIT", "CHAT", "REPEAT"].map((txt, i) => {
           const positions = [
-            { left: "4vw", top: "10vh", fontSize: "4.4vw" },
-            { left: "54vw", top: "16vh", fontSize: "3.2vw" },
-            { left: "22vw", top: "30vh", fontSize: "5.2vw" },
-            { left: "68vw", top: "40vh", fontSize: "3.6vw" },
-            { left: "8vw", top: "52vh", fontSize: "4vw" },
-            { left: "40vw", top: "62vh", fontSize: "5.6vw" },
-            { left: "72vw", top: "72vh", fontSize: "3vw" },
-            { left: "14vw", top: "80vh", fontSize: "4.6vw" },
-            { left: "50vw", top: "88vh", fontSize: "3.4vw" },
-            { left: "84vw", top: "6vh", fontSize: "3.8vw" },
-            { left: "30vw", top: "46vh", fontSize: "2.8vw" },
-            { left: "60vw", top: "56vh", fontSize: "4.2vw" },
+            { left: "4vw", top: "10vh", fontSize: "clamp(18px, 4.4vw, 60px)" },
+            { left: "54vw", top: "16vh", fontSize: "clamp(16px, 3.2vw, 44px)" },
+            { left: "22vw", top: "30vh", fontSize: "clamp(20px, 5.2vw, 70px)" },
+            { left: "68vw", top: "40vh", fontSize: "clamp(16px, 3.6vw, 48px)" },
+            { left: "8vw", top: "52vh", fontSize: "clamp(18px, 4vw, 55px)" },
+            { left: "40vw", top: "62vh", fontSize: "clamp(22px, 5.6vw, 78px)" },
+            { left: "72vw", top: "72vh", fontSize: "clamp(15px, 3vw, 42px)" },
+            { left: "14vw", top: "80vh", fontSize: "clamp(18px, 4.6vw, 62px)" },
+            { left: "50vw", top: "88vh", fontSize: "clamp(16px, 3.4vw, 46px)" },
+            { left: "84vw", top: "6vh", fontSize: "clamp(17px, 3.8vw, 50px)" },
+            { left: "30vw", top: "46vh", fontSize: "clamp(14px, 2.8vw, 38px)" },
+            { left: "60vw", top: "56vh", fontSize: "clamp(18px, 4.2vw, 58px)" },
           ];
           return (
             <div
@@ -740,6 +755,7 @@ export default function Scene02() {
                 letterSpacing: "0.04em",
                 color: "#F3EEE6",
                 whiteSpace: "nowrap",
+                willChange: "transform, opacity",
               }}
             >
               {txt}
@@ -752,15 +768,17 @@ export default function Scene02() {
             position: "absolute",
             left: "6vw",
             top: "38vh",
+            maxWidth: "clamp(260px, 88vw, 1100px)",
             zIndex: 26,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "11vw",
+            fontSize: "clamp(26px, 10vw, 150px)",
             lineHeight: 0.88,
             letterSpacing: "-0.03em",
             color: "#F3EEE6",
-            whiteSpace: "nowrap",
+            wordBreak: "break-word",
+            willChange: "transform, opacity",
           }}
         >
           NOT LIKE THIS.
@@ -771,14 +789,16 @@ export default function Scene02() {
             position: "absolute",
             left: "6vw",
             top: "60vh",
+            maxWidth: "clamp(240px, 80vw, 600px)",
             zIndex: 26,
             opacity: 0,
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "13px",
+            fontSize: "clamp(11px, 1.1vw, 14px)",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           You don't choose from a catalogue.
@@ -791,15 +811,17 @@ export default function Scene02() {
             position: "absolute",
             left: "7vw",
             top: "38vh",
+            maxWidth: "clamp(260px, 88vw, 1100px)",
             zIndex: 20,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "9vw",
+            fontSize: "clamp(24px, 8.5vw, 125px)",
             lineHeight: 0.88,
             letterSpacing: "-0.03em",
             color: "#F3EEE6",
-            whiteSpace: "nowrap",
+            wordBreak: "break-word",
+            willChange: "transform, opacity",
           }}
         >
           SO WHAT DO WE DO?
@@ -810,20 +832,23 @@ export default function Scene02() {
             position: "absolute",
             left: "7vw",
             top: "20vh",
+            maxWidth: "clamp(260px, 88vw, 1100px)",
             zIndex: 20,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "9.4vw",
+            fontSize: "clamp(26px, 9vw, 130px)",
             lineHeight: 0.86,
             letterSpacing: "-0.035em",
             color: "#F3EEE6",
+            wordBreak: "break-word",
+            willChange: "transform, opacity",
           }}
         >
-          <div style={{ whiteSpace: "nowrap" }}>
+          <div>
             WE <span style={{ fontStyle: "italic", fontWeight: 500 }}>CURATE</span>
           </div>
-          <div style={{ paddingLeft: "0.6em", fontSize: "1.18em", lineHeight: 0.84, whiteSpace: "nowrap" }}>
+          <div style={{ paddingLeft: "clamp(0.2em, 0.6em, 0.6em)", fontSize: "1.18em", lineHeight: 0.84 }}>
             THE UNKNOWN.
           </div>
         </div>
@@ -839,16 +864,17 @@ export default function Scene02() {
             flexDirection: "column",
             gap: "0.75em",
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "13px",
+            fontSize: "clamp(11px, 1.1vw, 14px)",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           <span>You tell us what matters to you.</span>
-          <span style={{ paddingLeft: "3.2em" }}>We find the connection.</span>
-          <span style={{ paddingLeft: "6.4em" }}>We take care of the meeting.</span>
+          <span style={{ paddingLeft: "clamp(1em, 3.2em, 3.2em)" }}>We find the connection.</span>
+          <span style={{ paddingLeft: "clamp(2em, 6.4em, 6.4em)" }}>We take care of the meeting.</span>
         </div>
 
         {/* Frame 07: UNKNKN System */}
@@ -864,10 +890,11 @@ export default function Scene02() {
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "17vw",
+            fontSize: "clamp(48px, 17vw, 240px)",
             lineHeight: 0.9,
             letterSpacing: "-0.04em",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           YOU
@@ -885,20 +912,21 @@ export default function Scene02() {
             fontFamily: "var(--font-playfair), serif",
             fontStyle: "italic",
             fontWeight: 500,
-            fontSize: "12vw",
+            fontSize: "clamp(38px, 12vw, 170px)",
             lineHeight: 0.9,
             letterSpacing: "-0.03em",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           YOUR VIBE
         </div>
-        <div data-el="int" style={{ position: "absolute", left: "6vw", top: "18vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "6vw", color: "#F3EEE6", whiteSpace: "nowrap" }}>COFFEE</div>
-        <div data-el="int" style={{ position: "absolute", left: "66vw", top: "12vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontStyle: "italic", fontWeight: 500, fontSize: "5vw", color: "#F3EEE6", whiteSpace: "nowrap" }}>MUSIC</div>
-        <div data-el="int" style={{ position: "absolute", left: "14vw", top: "70vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "7vw", color: "#F3EEE6", whiteSpace: "nowrap" }}>ART</div>
-        <div data-el="int" style={{ position: "absolute", left: "70vw", top: "66vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "5.4vw", color: "#F3EEE6", whiteSpace: "nowrap" }}>TRAVEL</div>
-        <div data-el="int" style={{ position: "absolute", left: "40vw", top: "84vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontStyle: "italic", fontWeight: 500, fontSize: "4.6vw", color: "#F3EEE6", whiteSpace: "nowrap" }}>FOOD</div>
-        <div data-el="int" style={{ position: "absolute", left: "42vw", top: "6vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "5.2vw", color: "#F3EEE6", whiteSpace: "nowrap" }}>MOVIES</div>
+        <div data-el="int" style={{ position: "absolute", left: "6vw", top: "18vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "clamp(22px, 6vw, 84px)", color: "#F3EEE6", whiteSpace: "nowrap" }}>COFFEE</div>
+        <div data-el="int" style={{ position: "absolute", left: "66vw", top: "12vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(20px, 5vw, 70px)", color: "#F3EEE6", whiteSpace: "nowrap" }}>MUSIC</div>
+        <div data-el="int" style={{ position: "absolute", left: "14vw", top: "70vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "clamp(24px, 7vw, 98px)", color: "#F3EEE6", whiteSpace: "nowrap" }}>ART</div>
+        <div data-el="int" style={{ position: "absolute", left: "70vw", top: "66vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "clamp(20px, 5.4vw, 76px)", color: "#F3EEE6", whiteSpace: "nowrap" }}>TRAVEL</div>
+        <div data-el="int" style={{ position: "absolute", left: "40vw", top: "84vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(18px, 4.6vw, 64px)", color: "#F3EEE6", whiteSpace: "nowrap" }}>FOOD</div>
+        <div data-el="int" style={{ position: "absolute", left: "42vw", top: "6vh", zIndex: 23, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "clamp(20px, 5.2vw, 72px)", color: "#F3EEE6", whiteSpace: "nowrap" }}>MOVIES</div>
         <div
           data-el="sysCur"
           style={{
@@ -911,10 +939,11 @@ export default function Scene02() {
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "10vw",
+            fontSize: "clamp(30px, 10vw, 140px)",
             lineHeight: 0.9,
             letterSpacing: "-0.03em",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           OUR CURATION
@@ -929,11 +958,12 @@ export default function Scene02() {
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "14vw",
+            fontSize: "clamp(36px, 14vw, 200px)",
             lineHeight: 0.9,
             letterSpacing: "-0.035em",
             color: "#F3EEE6",
             whiteSpace: "nowrap",
+            willChange: "transform, opacity",
           }}
         >
           SOMEONE
@@ -950,6 +980,7 @@ export default function Scene02() {
             opacity: 0,
             overflow: "hidden",
             background: "url('/images/portrait-b.png') center / cover no-repeat",
+            willChange: "transform, opacity",
           }}
         />
         <div
@@ -963,11 +994,12 @@ export default function Scene02() {
             fontFamily: "var(--font-playfair), serif",
             fontStyle: "italic",
             fontWeight: 500,
-            fontSize: "13vw",
+            fontSize: "clamp(34px, 13vw, 180px)",
             lineHeight: 0.9,
             letterSpacing: "-0.03em",
             color: "#F3EEE6",
             whiteSpace: "nowrap",
+            willChange: "transform, opacity",
           }}
         >
           A PLACE
@@ -984,6 +1016,7 @@ export default function Scene02() {
             opacity: 0,
             overflow: "hidden",
             background: "url('/images/env-b.png') center / cover no-repeat",
+            willChange: "transform, opacity",
           }}
         />
         <div
@@ -998,10 +1031,11 @@ export default function Scene02() {
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "18vw",
+            fontSize: "clamp(44px, 18vw, 250px)",
             lineHeight: 0.9,
             letterSpacing: "-0.04em",
             color: "#F3EEE6",
+            willChange: "transform, opacity",
           }}
         >
           A DATE
@@ -1018,6 +1052,7 @@ export default function Scene02() {
             opacity: 0,
             overflow: "hidden",
             background: "url('/images/date-b.png') center / cover no-repeat",
+            willChange: "transform, opacity",
           }}
         />
 
@@ -1026,41 +1061,43 @@ export default function Scene02() {
           data-el="fin1"
           style={{
             position: "absolute",
-            left: "8vw",
+            left: "clamp(16px, 8vw, 10vw)",
             top: "32vh",
-            width: "82vw",
+            width: "clamp(280px, 82vw, 1050px)",
             zIndex: 26,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "6vw",
+            fontSize: "clamp(28px, 6vw, 84px)",
             lineHeight: 0.98,
             letterSpacing: "-0.025em",
             color: "#171311",
+            willChange: "transform, opacity",
           }}
         >
           <div>THE BEST PART</div>
-          <div style={{ paddingLeft: "0.5em" }}>OF MEETING SOMEONE</div>
+          <div style={{ paddingLeft: "clamp(0.2em, 0.5em, 0.5em)" }}>OF MEETING SOMEONE</div>
         </div>
         <div
           data-el="fin2"
           style={{
             position: "absolute",
-            left: "8vw",
+            left: "clamp(16px, 8vw, 10vw)",
             top: "30vh",
-            width: "84vw",
+            width: "clamp(280px, 84vw, 1100px)",
             zIndex: 26,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "7.2vw",
+            fontSize: "clamp(32px, 7.2vw, 100px)",
             lineHeight: 0.96,
             letterSpacing: "-0.03em",
             color: "#171311",
+            willChange: "transform, opacity",
           }}
         >
           <div>IS THAT YOU DIDN'T</div>
-          <div style={{ paddingLeft: "0.7em", fontStyle: "italic", fontWeight: 500 }}>
+          <div style={{ paddingLeft: "clamp(0.3em, 0.7em, 0.7em)", fontStyle: "italic", fontWeight: 500 }}>
             KNOW THEM BEFORE.
           </div>
         </div>
@@ -1068,17 +1105,19 @@ export default function Scene02() {
           data-el="thats"
           style={{
             position: "absolute",
-            left: "8vw",
+            left: "clamp(16px, 8vw, 10vw)",
             top: "40vh",
+            maxWidth: "clamp(260px, 88vw, 1100px)",
             zIndex: 27,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "8.4vw",
+            fontSize: "clamp(28px, 8.4vw, 118px)",
             lineHeight: 0.96,
             letterSpacing: "-0.03em",
             color: "#171311",
-            whiteSpace: "nowrap",
+            wordBreak: "break-word",
+            willChange: "transform, opacity",
           }}
         >
           THAT'S <span style={{ color: "#7C1405" }}>UNKNKN.</span>
@@ -1087,16 +1126,17 @@ export default function Scene02() {
           data-el="finSub"
           style={{
             position: "absolute",
-            left: "8vw",
+            left: "clamp(16px, 8vw, 10vw)",
             top: "58vh",
             zIndex: 27,
             opacity: 0,
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "13px",
+            fontSize: "clamp(11px, 1.1vw, 14px)",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "#171311",
+            willChange: "transform, opacity",
           }}
         >
           Curated connections. Real dates.
@@ -1108,13 +1148,14 @@ export default function Scene02() {
           data-el="next"
           style={{
             position: "absolute",
-            left: "8vw",
+            left: "clamp(16px, 8vw, 10vw)",
             bottom: "14vh",
             zIndex: 28,
             opacity: 0,
             fontFamily: "var(--font-archivo), sans-serif",
             color: "#171311",
             display: "block",
+            willChange: "transform, opacity",
           }}
         >
           <div style={{ fontSize: "12px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", opacity: 0.42 }}>
@@ -1124,7 +1165,7 @@ export default function Scene02() {
             style={{
               marginTop: "0.6em",
               fontFamily: "var(--font-playfair), serif",
-              fontSize: "3.4vw",
+              fontSize: "clamp(20px, 3.4vw, 48px)",
               fontWeight: 600,
               letterSpacing: "-0.02em",
               textTransform: "none",
@@ -1139,12 +1180,12 @@ export default function Scene02() {
           data-el="ink"
           style={{
             position: "absolute",
-            left: "2.2vw",
-            top: "calc(var(--unknkn-nav-h, 0px) + 20px)",
+            left: "clamp(16px, 2.2vw, 32px)",
+            top: "calc(var(--unknkn-nav-h, 60px) + 16px)",
             zIndex: 30,
             height: "3.4em",
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "12px",
+            fontSize: "clamp(10px, 1vw, 12px)",
             fontWeight: 500,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
@@ -1182,7 +1223,7 @@ export default function Scene02() {
           data-el="ink"
           style={{
             position: "absolute",
-            left: "2.2vw",
+            left: "clamp(16px, 2.2vw, 32px)",
             bottom: "4.5vh",
             zIndex: 30,
             display: "flex",
@@ -1191,7 +1232,7 @@ export default function Scene02() {
             color: "#171311",
           }}
         >
-          <div style={{ position: "relative", width: "14vw", maxWidth: "180px", height: "1px" }}>
+          <div style={{ position: "relative", width: "clamp(80px, 14vw, 180px)", height: "1px" }}>
             <div style={{ position: "absolute", inset: 0, background: "currentColor", opacity: 0.24 }} />
             <div
               data-el="prog"

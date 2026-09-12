@@ -22,12 +22,14 @@ export default function Scene04Passes() {
     const root = rootRef.current;
     if (!root) return;
 
-    // Ambient background drift
+    // Ambient background drift with off-screen pause optimization
     let t0: number | null = null;
-    let rafId: number;
+    let rafId = 0;
+    let isVisible = false;
     const bgs = [bg1Ref.current, bg2Ref.current];
 
     const drift = (t: number) => {
+      if (!isVisible) return;
       if (t0 === null) t0 = t;
       const s = (t - t0) / 1000;
       const y = Math.sin(s * 0.06) * 12;
@@ -38,9 +40,17 @@ export default function Scene04Passes() {
       rafId = requestAnimationFrame(drift);
     };
 
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const startDrift = () => {
+      if (rafId || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       rafId = requestAnimationFrame(drift);
-    }
+    };
+
+    const stopDrift = () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+    };
 
     // Gentle scroll reveal
     const q = (n: string) => Array.from(root.querySelectorAll<HTMLElement>(`[data-el="${n}"]`));
@@ -69,24 +79,32 @@ export default function Scene04Passes() {
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver(
         (ents) => {
-          if (ents.some((x) => x.isIntersecting)) {
-            show();
-            io.disconnect();
-          }
+          ents.forEach((x) => {
+            if (x.isIntersecting) {
+              isVisible = true;
+              show();
+              startDrift();
+            } else {
+              isVisible = false;
+              stopDrift();
+            }
+          });
         },
-        { threshold: 0.12 }
+        { threshold: 0.08 }
       );
       io.observe(root);
       return () => {
-        cancelAnimationFrame(rafId);
+        stopDrift();
         io.disconnect();
       };
     } else {
+      isVisible = true;
       show();
+      startDrift();
     }
 
     return () => {
-      cancelAnimationFrame(rafId);
+      stopDrift();
     };
   }, []);
 
@@ -179,10 +197,11 @@ export default function Scene04Passes() {
             margin: "7vh 0 0",
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "clamp(38px, 6.4vw, 96px)",
+            fontSize: "clamp(32px, 6.4vw, 96px)",
             lineHeight: 0.98,
             letterSpacing: "-0.03em",
             color: "#F3EEE6",
+            wordBreak: "break-word",
           }}
         >
           YOUR FIRST DATE
@@ -216,6 +235,7 @@ export default function Scene04Passes() {
             margin: "5.5vh 0 0",
             border: "1px solid rgba(243, 238, 230, 0.24)",
             width: "fit-content",
+            maxWidth: "100%",
           }}
         >
           <button
@@ -229,11 +249,11 @@ export default function Scene04Passes() {
               background: isCinema ? "#7C1405" : "transparent",
               color: isCinema ? "#F3EEE6" : "rgba(243, 238, 230, 0.62)",
               fontFamily: "var(--font-archivo), sans-serif",
-              fontSize: "12px",
+              fontSize: "clamp(11px, 1.2vw, 12px)",
               fontWeight: 500,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              padding: "1.25em 2.2em",
+              padding: "clamp(0.9em, 2vw, 1.25em) clamp(1.2em, 3.5vw, 2.2em)",
               cursor: "pointer",
               transition: "background 380ms ease, color 380ms ease",
             }}
@@ -250,11 +270,11 @@ export default function Scene04Passes() {
               background: !isCinema ? "#7C1405" : "transparent",
               color: !isCinema ? "#F3EEE6" : "rgba(243, 238, 230, 0.62)",
               fontFamily: "var(--font-archivo), sans-serif",
-              fontSize: "12px",
+              fontSize: "clamp(11px, 1.2vw, 12px)",
               fontWeight: 500,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              padding: "1.25em 2.2em",
+              padding: "clamp(0.9em, 2vw, 1.25em) clamp(1.2em, 3.5vw, 2.2em)",
               cursor: "pointer",
               transition: "background 380ms ease, color 380ms ease",
             }}
@@ -281,7 +301,7 @@ export default function Scene04Passes() {
               background: "#F3EEE6",
               border: "1px solid rgba(23, 19, 17, 0.16)",
               borderRadius: "3px",
-              padding: "3.4em 2.6em 2.6em",
+              padding: "clamp(2.4em, 5vw, 3.4em) clamp(1.4em, 4vw, 2.6em)",
               color: "#171311",
               transition: "transform 420ms cubic-bezier(0.22, 1, 0.36, 1), border-color 420ms ease, box-shadow 420ms ease",
             }}
@@ -296,7 +316,7 @@ export default function Scene04Passes() {
               e.currentTarget.style.boxShadow = "none";
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "1.5em", fontFamily: "var(--font-archivo), sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "1.2em", fontFamily: "var(--font-archivo), sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase" }}>
               <span>Ladies Pass</span>
               <span
                 style={{
@@ -308,21 +328,21 @@ export default function Scene04Passes() {
                 {venueA}
               </span>
             </div>
-            <div style={{ marginTop: "1.1em", fontFamily: "var(--font-playfair), serif", fontSize: "clamp(46px, 5vw, 72px)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1 }}>
+            <div style={{ marginTop: "1.1em", fontFamily: "var(--font-playfair), serif", fontSize: "clamp(40px, 5vw, 72px)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1 }}>
               ₹399
             </div>
             <div style={{ height: "1px", background: "rgba(23, 19, 17, 0.14)", margin: "2.4em 0 0" }} />
             <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 0 }}>
-              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "14px", letterSpacing: "0.02em" }}>
+              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "clamp(13px, 1.1vw, 14px)", letterSpacing: "0.02em" }}>
                 Curated Match Profile
               </li>
-              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "14px", letterSpacing: "0.02em" }}>
+              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "clamp(13px, 1.1vw, 14px)", letterSpacing: "0.02em" }}>
                 Priority Matching Access
               </li>
-              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "14px", letterSpacing: "0.02em" }}>
+              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "clamp(13px, 1.1vw, 14px)", letterSpacing: "0.02em" }}>
                 Reserved Date Slot
               </li>
-              <li style={{ padding: "1.15em 0", fontFamily: "var(--font-archivo), sans-serif", fontSize: "14px", letterSpacing: "0.02em" }}>
+              <li style={{ padding: "1.15em 0", fontFamily: "var(--font-archivo), sans-serif", fontSize: "clamp(13px, 1.1vw, 14px)", letterSpacing: "0.02em" }}>
                 SOS Safety Support
               </li>
             </ul>
@@ -338,12 +358,12 @@ export default function Scene04Passes() {
                 background: "#7C1405",
                 color: "#F3EEE6",
                 fontFamily: "var(--font-archivo), sans-serif",
-                fontSize: "12px",
+                fontSize: "clamp(11px, 1.1vw, 12px)",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 textAlign: "left",
-                padding: "1.4em 1.6em",
+                padding: "1.25em clamp(1.2em, 3vw, 1.6em)",
                 cursor: "pointer",
                 transition: "transform 260ms ease, background 260ms ease",
               }}
@@ -368,7 +388,7 @@ export default function Scene04Passes() {
               background: "#F3EEE6",
               border: "1px solid rgba(23, 19, 17, 0.16)",
               borderRadius: "3px",
-              padding: "3.4em 2.6em 2.6em",
+              padding: "clamp(2.4em, 5vw, 3.4em) clamp(1.4em, 4vw, 2.6em)",
               color: "#171311",
               transition: "transform 420ms cubic-bezier(0.22, 1, 0.36, 1), border-color 420ms ease, box-shadow 420ms ease",
             }}
@@ -383,7 +403,7 @@ export default function Scene04Passes() {
               e.currentTarget.style.boxShadow = "none";
             }}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "1.5em", fontFamily: "var(--font-archivo), sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "1.2em", fontFamily: "var(--font-archivo), sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase" }}>
               <span>Gentlemen Pass</span>
               <span
                 style={{
@@ -395,21 +415,21 @@ export default function Scene04Passes() {
                 {venueB}
               </span>
             </div>
-            <div style={{ marginTop: "1.1em", fontFamily: "var(--font-playfair), serif", fontSize: "clamp(46px, 5vw, 72px)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1 }}>
+            <div style={{ marginTop: "1.1em", fontFamily: "var(--font-playfair), serif", fontSize: "clamp(40px, 5vw, 72px)", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1 }}>
               ₹1499
             </div>
             <div style={{ height: "1px", background: "rgba(23, 19, 17, 0.14)", margin: "2.4em 0 0" }} />
             <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 0 }}>
-              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "14px", letterSpacing: "0.02em" }}>
+              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "clamp(13px, 1.1vw, 14px)", letterSpacing: "0.02em" }}>
                 Full Compatibility Match
               </li>
-              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "14px", letterSpacing: "0.02em" }}>
+              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "clamp(13px, 1.1vw, 14px)", letterSpacing: "0.02em" }}>
                 Priority Matching Queue
               </li>
-              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "14px", letterSpacing: "0.02em" }}>
+              <li style={{ padding: "1.15em 0", borderBottom: "1px solid rgba(23, 19, 17, 0.14)", fontFamily: "var(--font-archivo), sans-serif", fontSize: "clamp(13px, 1.1vw, 14px)", letterSpacing: "0.02em" }}>
                 Confirmed Date Booking
               </li>
-              <li style={{ padding: "1.15em 0", fontFamily: "var(--font-archivo), sans-serif", fontSize: "14px", letterSpacing: "0.02em" }}>
+              <li style={{ padding: "1.15em 0", fontFamily: "var(--font-archivo), sans-serif", fontSize: "clamp(13px, 1.1vw, 14px)", letterSpacing: "0.02em" }}>
                 Compatibility Insights
               </li>
             </ul>
@@ -425,12 +445,12 @@ export default function Scene04Passes() {
                 background: "#7C1405",
                 color: "#F3EEE6",
                 fontFamily: "var(--font-archivo), sans-serif",
-                fontSize: "12px",
+                fontSize: "clamp(11px, 1.1vw, 12px)",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 textAlign: "left",
-                padding: "1.4em 1.6em",
+                padding: "1.25em clamp(1.2em, 3vw, 1.6em)",
                 cursor: "pointer",
                 transition: "transform 260ms ease, background 260ms ease",
               }}

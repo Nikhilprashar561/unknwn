@@ -50,34 +50,52 @@ export default function Scene01() {
 
     if (mob) {
       Object.assign(l1.style, {
-        fontSize: "17vw",
-        flexWrap: "wrap",
-        whiteSpace: "normal",
-        width: "104vw",
-        top: "13vh",
-        left: "-3vw",
-      });
-      Object.assign(l2.style, {
-        fontSize: "14.5vw",
+        fontSize: "14vw",
         flexWrap: "wrap",
         whiteSpace: "normal",
         width: "92vw",
-        top: "46vh",
-        left: "6vw",
+        top: "14vh",
+        left: "4vw",
       });
-      if (tooMany) Object.assign(tooMany.style, { fontSize: "20vw", top: "22vh", left: "5vw" });
-      if (tooNoise) Object.assign(tooNoise.style, { fontSize: "21vw", top: "46vh", left: "10vw" });
-      if (removed) Object.assign(removed.style, { fontSize: "15vw", top: "30vh", left: "6vw" });
-      if (final) Object.assign(final.style, { fontSize: "11.5vw", top: "30vh", left: "7vw", width: "86vw" });
-      if (sub) Object.assign(sub.style, { left: "7vw", top: "72vh" });
-      Object.assign(p1.style, { left: "-10vw", width: "66vw", height: "54vh", top: "12vh" });
-      Object.assign(p2.style, { left: "54vw", width: "52vw", height: "38vh", top: "54vh" });
-      words.forEach((w) => {
-        w.style.fontSize = `${parseFloat(w.style.fontSize) * 1.9}vw`;
+      w1.forEach((span) => {
+        span.style.left = "0";
       });
+      Object.assign(l2.style, {
+        fontSize: "13vw",
+        flexWrap: "wrap",
+        whiteSpace: "normal",
+        width: "92vw",
+        top: "42vh",
+        left: "4vw",
+      });
+      if (tooMany) Object.assign(tooMany.style, { fontSize: "13.5vw", top: "20vh", left: "5vw", maxWidth: "90vw" });
+      if (tooNoise) Object.assign(tooNoise.style, { fontSize: "14.5vw", top: "42vh", left: "6vw", maxWidth: "90vw" });
+      if (removed) {
+        Object.assign(removed.style, { fontSize: "10.5vw", top: "28vh", left: "5vw", maxWidth: "90vw" });
+        const r1 = removed.children[0] as HTMLElement;
+        const r2 = removed.children[1] as HTMLElement;
+        if (r1) {
+          r1.style.left = "0";
+          r1.style.top = "0";
+        }
+        if (r2) {
+          r2.style.paddingLeft = "0.4em";
+          r2.style.top = "0";
+        }
+      }
+      if (final) {
+        Object.assign(final.style, { fontSize: "8vw", top: "28vh", left: "5vw", width: "90vw" });
+        const f3 = final.children[2] as HTMLElement;
+        if (f3) f3.style.left = "0";
+      }
+      if (sub) Object.assign(sub.style, { left: "5vw", top: "72vh", maxWidth: "90vw" });
+      Object.assign(p1.style, { left: "-8vw", width: "62vw", height: "52vh", top: "12vh" });
+      Object.assign(p2.style, { left: "48vw", width: "56vw", height: "40vh", top: "50vh" });
       noise.forEach((n) => {
-        n.style.width = `${parseFloat(n.style.width) * 1.9}vw`;
-        n.style.height = `${parseFloat(n.style.height) * 1.25}vh`;
+        const curW = parseFloat(n.style.width || "20");
+        const curH = parseFloat(n.style.height || "20");
+        if (!isNaN(curW)) n.style.width = `${curW * 1.5}vw`;
+        if (!isNaN(curH)) n.style.height = `${curH * 1.1}vh`;
       });
     }
 
@@ -287,7 +305,7 @@ export default function Scene01() {
         ScrollTrigger.refresh();
       }, 200);
     };
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", onResize, { passive: true });
 
     return () => {
       window.removeEventListener("resize", onResize);
@@ -357,6 +375,7 @@ export default function Scene01() {
             zIndex: 12,
             opacity: 0,
             overflow: "hidden",
+            willChange: "transform, opacity",
           }}
         >
           <div
@@ -382,6 +401,7 @@ export default function Scene01() {
             zIndex: 13,
             opacity: 0,
             overflow: "hidden",
+            willChange: "transform, opacity",
           }}
         >
           <div
@@ -393,35 +413,35 @@ export default function Scene01() {
           />
         </div>
 
-        {/* Swarm / Noise Faces */}
-        <div data-el="noise" style={{ position: "absolute", left: "-9vw", top: "-7vh", width: "27vw", height: "41vh", zIndex: 6, opacity: 0, overflow: "hidden" }}>
+        {/* Swarm / Candidate Noise Faces */}
+        <div data-el="noise" style={{ position: "absolute", left: "-9vw", top: "-7vh", width: "27vw", height: "41vh", zIndex: 6, opacity: 0, overflow: "hidden", willChange: "transform, opacity" }}>
           <div style={{ width: "100%", height: "100%", background: "url('/images/noise-01.webp') center / cover no-repeat" }} />
         </div>
-        <div data-el="noise" style={{ position: "absolute", left: "22vw", top: "7vh", width: "14vw", height: "27vh", zIndex: 7, opacity: 0, overflow: "hidden" }}>
+        <div data-el="noise" style={{ position: "absolute", left: "22vw", top: "7vh", width: "14vw", height: "27vh", zIndex: 7, opacity: 0, overflow: "hidden", willChange: "transform, opacity" }}>
           <div style={{ width: "100%", height: "100%", background: "url('/images/noise-02.png') center / cover no-repeat", opacity: 0.8 }} />
         </div>
-        <div data-el="noise" style={{ position: "absolute", left: "43vw", top: "-5vh", width: "21vw", height: "35vh", zIndex: 6, opacity: 0, overflow: "hidden" }}>
+        <div data-el="noise" style={{ position: "absolute", left: "43vw", top: "-5vh", width: "21vw", height: "35vh", zIndex: 6, opacity: 0, overflow: "hidden", willChange: "transform, opacity" }}>
           <div style={{ width: "100%", height: "100%", background: "url('/images/noise-03.png') center / cover no-repeat" }} />
         </div>
-        <div data-el="noise" style={{ position: "absolute", left: "69vw", top: "3vh", width: "18vw", height: "33vh", zIndex: 8, opacity: 0, overflow: "hidden" }}>
+        <div data-el="noise" style={{ position: "absolute", left: "69vw", top: "3vh", width: "18vw", height: "33vh", zIndex: 8, opacity: 0, overflow: "hidden", willChange: "transform, opacity" }}>
           <div style={{ width: "100%", height: "100%", background: "url('/images/noise-04.png') center / cover no-repeat" }} />
         </div>
-        <div data-el="noise" style={{ position: "absolute", left: "88vw", top: "25vh", width: "21vw", height: "31vh", zIndex: 6, opacity: 0, overflow: "hidden" }}>
+        <div data-el="noise" style={{ position: "absolute", left: "88vw", top: "25vh", width: "21vw", height: "31vh", zIndex: 6, opacity: 0, overflow: "hidden", willChange: "transform, opacity" }}>
           <div style={{ width: "100%", height: "100%", background: "url('/images/noise-05.jpg') center / cover no-repeat" }} />
         </div>
-        <div data-el="noise" style={{ position: "absolute", left: "5vw", top: "39vh", width: "12vw", height: "23vh", zIndex: 9, opacity: 0, overflow: "hidden" }}>
+        <div data-el="noise" style={{ position: "absolute", left: "5vw", top: "39vh", width: "12vw", height: "23vh", zIndex: 9, opacity: 0, overflow: "hidden", willChange: "transform, opacity" }}>
           <div style={{ width: "100%", height: "100%", background: "url('/images/noise-06.jpg') center / cover no-repeat" }} />
         </div>
-        <div data-el="noise" style={{ position: "absolute", left: "78vw", top: "57vh", width: "23vw", height: "37vh", zIndex: 7, opacity: 0, overflow: "hidden" }}>
+        <div data-el="noise" style={{ position: "absolute", left: "78vw", top: "57vh", width: "23vw", height: "37vh", zIndex: 7, opacity: 0, overflow: "hidden", willChange: "transform, opacity" }}>
           <div style={{ width: "100%", height: "100%", background: "url('/images/noise-09.png') center / cover no-repeat", opacity: 0.8 }} />
         </div>
-        <div data-el="noise" style={{ position: "absolute", left: "-7vw", top: "55vh", width: "17vw", height: "31vh", zIndex: 6, opacity: 0, overflow: "hidden" }}>
+        <div data-el="noise" style={{ position: "absolute", left: "-7vw", top: "55vh", width: "17vw", height: "31vh", zIndex: 6, opacity: 0, overflow: "hidden", willChange: "transform, opacity" }}>
           <div style={{ width: "100%", height: "100%", background: "url('/images/noise-10.png') center / cover no-repeat" }} />
         </div>
-        <div data-el="noise" style={{ position: "absolute", left: "15vw", top: "73vh", width: "25vw", height: "35vh", zIndex: 7, opacity: 0, overflow: "hidden" }}>
+        <div data-el="noise" style={{ position: "absolute", left: "15vw", top: "73vh", width: "25vw", height: "35vh", zIndex: 7, opacity: 0, overflow: "hidden", willChange: "transform, opacity" }}>
           <div style={{ width: "100%", height: "100%", background: "url('/images/noise-11.png') center / cover no-repeat" }} />
         </div>
-        <div data-el="noise" style={{ position: "absolute", left: "45vw", top: "81vh", width: "15vw", height: "25vh", zIndex: 9, opacity: 0, overflow: "hidden" }}>
+        <div data-el="noise" style={{ position: "absolute", left: "45vw", top: "81vh", width: "15vw", height: "25vh", zIndex: 9, opacity: 0, overflow: "hidden", willChange: "transform, opacity" }}>
           <div style={{ width: "100%", height: "100%", background: "url('/images/noise-12.png') center / cover no-repeat" }} />
         </div>
 
@@ -430,7 +450,7 @@ export default function Scene01() {
           data-el="l1"
           style={{
             position: "absolute",
-            left: "-2.8vw",
+            left: "clamp(-2.8vw, 2vw, 4vw)",
             top: "16vh",
             zIndex: 20,
             display: "flex",
@@ -438,16 +458,17 @@ export default function Scene01() {
             flexWrap: "nowrap",
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "10.6vw",
+            fontSize: "clamp(48px, 10.6vw, 160px)",
             lineHeight: 0.84,
             letterSpacing: "-0.02em",
             color: "#1B1512",
             whiteSpace: "nowrap",
+            willChange: "transform, opacity",
           }}
         >
-          <span style={{ display: "inline-block", position: "relative", left: "71px" }}>YOU</span>
-          <span style={{ display: "inline-block", position: "relative", left: "71px", color: "#7c1405" }}>DON'T</span>
-          <span style={{ display: "inline-block", position: "relative", left: "71px" }}>KNOW</span>
+          <span style={{ display: "inline-block", position: "relative", left: "clamp(0px, 4vw, 71px)" }}>YOU</span>
+          <span style={{ display: "inline-block", position: "relative", left: "clamp(0px, 4vw, 71px)", color: "#7c1405" }}>DON'T</span>
+          <span style={{ display: "inline-block", position: "relative", left: "clamp(0px, 4vw, 71px)" }}>KNOW</span>
         </div>
 
         {/* Text 2: WHO YOU'LL MEET. */}
@@ -455,7 +476,7 @@ export default function Scene01() {
           data-el="l2"
           style={{
             position: "absolute",
-            left: "7.5vw",
+            left: "clamp(4vw, 7.5vw, 10vw)",
             top: "41vh",
             zIndex: 20,
             display: "flex",
@@ -464,11 +485,12 @@ export default function Scene01() {
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 400,
             fontStyle: "italic",
-            fontSize: "9.4vw",
+            fontSize: "clamp(42px, 9.4vw, 140px)",
             lineHeight: 0.84,
             letterSpacing: "-0.02em",
             color: "#1B1512",
             whiteSpace: "nowrap",
+            willChange: "transform, opacity",
           }}
         >
           <span style={{ display: "inline-block" }}>WHO</span>
@@ -481,15 +503,16 @@ export default function Scene01() {
           data-el="point"
           style={{
             position: "absolute",
-            right: "7vw",
-            bottom: "11vh",
+            right: "clamp(16px, 7vw, 9vw)",
+            bottom: "clamp(24px, 10vh, 80px)",
             zIndex: 21,
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "clamp(16px, 2.2vw, 34px)",
+            fontSize: "clamp(13px, 2.2vw, 34px)",
             fontWeight: 500,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
             color: "#1B1512",
+            willChange: "transform, opacity",
           }}
         >
           And that's the point.
@@ -500,20 +523,23 @@ export default function Scene01() {
           data-el="tooMany"
           style={{
             position: "absolute",
-            left: "6vw",
+            left: "clamp(16px, 6vw, 8vw)",
             top: "26vh",
+            maxWidth: "clamp(260px, 90vw, 1100px)",
             zIndex: 20,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "12.5vw",
+            fontSize: "clamp(34px, 12.5vw, 180px)",
             lineHeight: 0.86,
             letterSpacing: "-0.025em",
             color: "#1B1512",
+            wordBreak: "break-word",
+            willChange: "transform, opacity",
           }}
         >
-          <div style={{ padding: "8px 2px", position: "relative", top: "-138px" }}>TOO MANY</div>
-          <div style={{ padding: "8px 2px", position: "relative", top: "-138px", color: "#7c1405", fontStyle: "italic" }}>
+          <div style={{ padding: "4px 2px", position: "relative" }}>TOO MANY</div>
+          <div style={{ padding: "4px 2px", position: "relative", color: "#7c1405", fontStyle: "italic" }}>
             CHOICES.
           </div>
         </div>
@@ -523,21 +549,24 @@ export default function Scene01() {
           data-el="tooNoise"
           style={{
             position: "absolute",
-            left: "32vw",
+            left: "clamp(20px, 32vw, 36vw)",
             top: "48vh",
+            maxWidth: "clamp(260px, 90vw, 1100px)",
             zIndex: 7,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 400,
             fontStyle: "italic",
-            fontSize: "13.5vw",
+            fontSize: "clamp(36px, 13.5vw, 190px)",
             lineHeight: 0.84,
             letterSpacing: "-0.02em",
             color: "#1B1512",
+            wordBreak: "break-word",
+            willChange: "transform, opacity",
           }}
         >
-          <div style={{ position: "relative", top: "-153px" }}>TOO MUCH</div>
-          <div style={{ paddingLeft: "0.5em", position: "relative", top: "-153px", color: "#7c1405" }}>
+          <div style={{ position: "relative" }}>TOO MUCH</div>
+          <div style={{ paddingLeft: "clamp(0.2em, 2vw, 0.5em)", position: "relative", color: "#7c1405" }}>
             NOISE.
           </div>
         </div>
@@ -547,55 +576,61 @@ export default function Scene01() {
           data-el="removed"
           style={{
             position: "absolute",
-            left: "8vw",
+            left: "clamp(16px, 8vw, 10vw)",
             top: "36vh",
+            maxWidth: "clamp(260px, 90vw, 1100px)",
             zIndex: 20,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "8.2vw",
+            fontSize: "clamp(30px, 8.2vw, 120px)",
             lineHeight: 0.92,
             letterSpacing: "-0.02em",
             color: "#1B1512",
+            wordBreak: "break-word",
+            willChange: "transform, opacity",
           }}
         >
-          <div style={{ padding: "8px 2px", position: "relative", top: "-138px", left: "147px" }}>
+          <div style={{ padding: "4px 2px", position: "relative" }}>
             SO WE REMOVED
           </div>
-          <div style={{ paddingLeft: "2.42em", fontStyle: "italic", fontWeight: 400, color: "#7c1405", position: "relative", top: "-63px" }}>
+          <div style={{ paddingLeft: "clamp(0.4em, 2.42em, 2.42em)", fontStyle: "italic", fontWeight: 400, color: "#7c1405", position: "relative" }}>
             THE NOISE.
           </div>
         </div>
 
         {/* Floating Interleaved Interest Words */}
-        <div data-el="word" style={{ position: "absolute", left: "4vw", top: "21vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "6.4vw", letterSpacing: "-0.01em", color: "#1B1512" }}>COFFEE</div>
-        <div data-el="word" style={{ position: "absolute", left: "65vw", top: "11vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 400, fontStyle: "italic", fontSize: "5.2vw", letterSpacing: "-0.01em", color: "#1B1512" }}>TRAVEL</div>
-        <div data-el="word" style={{ position: "absolute", left: "72vw", top: "67vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "7vw", letterSpacing: "-0.01em", color: "#1B1512" }}>MUSIC</div>
-        <div data-el="word" style={{ position: "absolute", left: "11vw", top: "72vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "8vw", letterSpacing: "-0.01em", color: "#1B1512" }}>ART</div>
-        <div data-el="word" style={{ position: "absolute", left: "39vw", top: "85vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 400, fontStyle: "italic", fontSize: "5vw", letterSpacing: "-0.01em", color: "#1B1512" }}>FOOD</div>
-        <div data-el="word" style={{ position: "absolute", left: "43vw", top: "5vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 400, fontSize: "5.6vw", letterSpacing: "-0.01em", color: "#1B1512" }}>MOVIES</div>
+        <div data-el="word" style={{ position: "absolute", left: "4vw", top: "21vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "clamp(22px, 6.4vw, 90px)", letterSpacing: "-0.01em", color: "#1B1512" }}>COFFEE</div>
+        <div data-el="word" style={{ position: "absolute", left: "65vw", top: "11vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 400, fontStyle: "italic", fontSize: "clamp(20px, 5.2vw, 75px)", letterSpacing: "-0.01em", color: "#1B1512" }}>TRAVEL</div>
+        <div data-el="word" style={{ position: "absolute", left: "72vw", top: "67vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "clamp(24px, 7vw, 100px)", letterSpacing: "-0.01em", color: "#1B1512" }}>MUSIC</div>
+        <div data-el="word" style={{ position: "absolute", left: "11vw", top: "72vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 500, fontSize: "clamp(26px, 8vw, 115px)", letterSpacing: "-0.01em", color: "#1B1512" }}>ART</div>
+        <div data-el="word" style={{ position: "absolute", left: "39vw", top: "85vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 400, fontStyle: "italic", fontSize: "clamp(18px, 5vw, 72px)", letterSpacing: "-0.01em", color: "#1B1512" }}>FOOD</div>
+        <div data-el="word" style={{ position: "absolute", left: "43vw", top: "5vh", zIndex: 18, opacity: 0, fontFamily: "var(--font-playfair), serif", fontWeight: 400, fontSize: "clamp(20px, 5.6vw, 80px)", letterSpacing: "-0.01em", color: "#1B1512" }}>MOVIES</div>
 
         {/* Final Scene 01 Message */}
         <div
           data-el="final"
           style={{
             position: "absolute",
-            left: "16vw",
+            left: "clamp(16px, 16vw, 20vw)",
             top: "36vh",
-            width: "70vw",
+            width: "clamp(260px, 75vw, 900px)",
+            maxWidth: "90vw",
             zIndex: 22,
             opacity: 0,
             fontFamily: "var(--font-playfair), serif",
             fontWeight: 600,
-            fontSize: "5.6vw",
+            fontSize: "clamp(24px, 5.6vw, 78px)",
             lineHeight: 0.98,
             letterSpacing: "-0.02em",
             color: "#1B1512",
+            wordBreak: "break-word",
+            willChange: "transform, opacity",
           }}
         >
           <div>MEET SOMEONE</div>
-          <div style={{ paddingLeft: "0.6em" }}>YOU DIDN'T HAVE</div>
-          <div style={{ paddingLeft: "1.4em", position: "relative", left: "22px" }}>
+          <div style={{ paddingLeft: "clamp(0.2em, 0.6em, 0.6em)" }}>YOU DIDN'T HAVE</div>
+          <div style={{ paddingLeft: "clamp(0.4em, 1.4em, 1.4em)" }}>
             TO <span style={{ fontStyle: "italic", fontWeight: 500, color: "#7c1405" }}>CHOOSE.</span>
           </div>
         </div>
@@ -604,16 +639,17 @@ export default function Scene01() {
           data-el="sub"
           style={{
             position: "absolute",
-            left: "16vw",
+            left: "clamp(16px, 16vw, 20vw)",
             top: "74vh",
             zIndex: 22,
             opacity: 0,
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "13px",
+            fontSize: "clamp(11px, 1.1vw, 14px)",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: "#1B1512",
+            willChange: "transform, opacity",
           }}
         >
           Curated connections. Real dates.
@@ -623,12 +659,12 @@ export default function Scene01() {
         <div
           style={{
             position: "absolute",
-            left: "2.2vw",
-            top: "calc(var(--unknkn-nav-h, 0px) + 20px)",
+            left: "clamp(16px, 2.2vw, 32px)",
+            top: "calc(var(--unknkn-nav-h, 60px) + 16px)",
             zIndex: 30,
             height: "3.4em",
             fontFamily: "var(--font-archivo), sans-serif",
-            fontSize: "12px",
+            fontSize: "clamp(10px, 1vw, 12px)",
             fontWeight: 500,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
@@ -661,7 +697,7 @@ export default function Scene01() {
         <div
           style={{
             position: "absolute",
-            left: "2.2vw",
+            left: "clamp(16px, 2.2vw, 32px)",
             bottom: "4.5vh",
             zIndex: 30,
             display: "flex",
@@ -669,7 +705,7 @@ export default function Scene01() {
             gap: "1em",
           }}
         >
-          <div style={{ width: "14vw", maxWidth: "180px", height: "1px", background: "rgba(27, 21, 18, 0.22)" }}>
+          <div style={{ width: "clamp(80px, 14vw, 180px)", height: "1px", background: "rgba(27, 21, 18, 0.22)" }}>
             <div
               data-el="prog"
               style={{
