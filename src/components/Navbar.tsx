@@ -398,7 +398,7 @@ export default function Navbar() {
             }}
           >
             <span>The art of not knowing</span>
-            <span>UNKNKN</span>
+            <span>Unknwn</span>
           </div>
         </div>
       </div>

@@ -261,7 +261,7 @@ export default function Scene02() {
     if (manifesto) tl.fromTo(manifesto, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 10 }, 302);
     if (curate && manifesto) tl.to([curate, manifesto], { opacity: 0, y: -vh * 0.12, duration: 12, stagger: 1 }, 318);
 
-    // ——— frame 07 / the UNKNKN system
+    // ——— frame 07 / the Unknwn system
     const sysYou = e("sysYou");
     const sysVibe = e("sysVibe");
     const sysCur = e("sysCur");
@@ -878,7 +878,7 @@ export default function Scene02() {
           <span style={{ paddingLeft: "clamp(2em, 6.4em, 6.4em)" }}>We take care of the meeting.</span>
         </div>
 
-        {/* Frame 07: UNKNKN System */}
+        {/* Frame 07: Unknwn System */}
         <div
           data-el="sysYou"
           style={{
@@ -1121,7 +1121,7 @@ export default function Scene02() {
             willChange: "transform, opacity",
           }}
         >
-          THAT'S <span style={{ color: "#7C1405" }}>UNKNKN.</span>
+          THAT'S <span style={{ color: "#7C1405" }}>Unknwn.</span>
         </div>
         <div
           data-el="finSub"

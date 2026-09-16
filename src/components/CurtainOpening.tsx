@@ -50,7 +50,7 @@ export default function CurtainOpening({ onComplete }: CurtainOpeningProps) {
       });
     });
 
-    // 1.5s — they close into UNKNKN
+    // 1.5s — they close into Unknwn
     at(1500, () => {
       letterRefs.current.forEach((l, i) => {
         if (!l) return;

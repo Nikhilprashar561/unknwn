@@ -26,8 +26,11 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "UNKNKN — The art of not knowing",
+  title: "UNKNWN — The art of not knowing",
   description: "Curated connections. Real dates. Meet someone you didn't have to choose.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

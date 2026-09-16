@@ -126,7 +126,7 @@ export default function Scene03Curation() {
             <span style={{ color: "#7C1405" }}>03 / 05</span>
             <span style={{ display: "block", marginTop: "0.7em" }}>The Curation</span>
           </div>
-          <span>UNKNKN</span>
+          <span>Unknwn</span>
         </div>
 
         <div style={{ height: "1px", background: "rgba(23, 19, 17, 0.18)", margin: "4.5vh 0 0" }} />
@@ -379,7 +379,7 @@ export default function Scene03Curation() {
             }}
           >
             <span style={{ color: "#7C1405" }}>04 / 05</span>
-            <span style={{ display: "block", marginTop: "0.6em" }}>The UNKNKN Passes</span>
+            <span style={{ display: "block", marginTop: "0.6em" }}>The Unknwn Passes</span>
           </a>
         </div>
       </div>

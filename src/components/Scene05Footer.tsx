@@ -260,7 +260,7 @@ export default function Scene05Footer() {
           }}
         >
           <span>Curated connections. Real dates.</span>
-          <span>© 2026 UNKNKN</span>
+          <span>© 2026 Unknwn</span>
         </div>
       </div>
     </footer>

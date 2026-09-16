@@ -184,7 +184,7 @@ export default function Scene04Passes() {
         >
           <div>
             <span style={{ opacity: 0.62 }}>04 / 05</span>
-            <span style={{ display: "block", marginTop: "0.7em" }}>The UNKNKN Passes</span>
+            <span style={{ display: "block", marginTop: "0.7em" }}>The Unknwn Passes</span>
           </div>
         </div>
 
@@ -223,7 +223,7 @@ export default function Scene04Passes() {
             color: "rgba(243, 238, 230, 0.72)",
           }}
         >
-          Choose how you want your UNKNKN experience to begin.
+          Choose how you want your Unknwn experience to begin.
         </p>
 
         {/* Experience Mode Toggle */}
