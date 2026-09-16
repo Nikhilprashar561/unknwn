@@ -148,7 +148,7 @@ export default function CurtainOpening({ onComplete }: CurtainOpeningProps) {
           willChange: "transform",
         }}
       >
-        {["U", "N", "K", "N", "K", "N"].map((char, index) => (
+        {["U", "N", "K", "N", "W", "N"].map((char, index) => (
           <span
             key={index}
             ref={(el) => {

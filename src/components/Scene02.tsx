@@ -50,56 +50,57 @@ export default function Scene02() {
         const el = e(n);
         if (el) Object.assign(el.style, s);
       };
-      set("qWhat", { fontSize: "16vw", left: "6vw", top: "14vh" });
-      set("qIs", { fontSize: "12vw", left: "38vw", top: "26vh" });
-      set("qUnknown", { fontSize: "22vw", left: "-1vw", top: "38vh" });
-      set("who", { fontSize: "28vw", top: "14vh", left: "4vw" });
-      set("portraitA", { left: "18vw", top: "36vh", width: "78vw", height: "56vh" });
-      set("where", { fontSize: "24vw", top: "20vh", left: "5vw" });
-      set("when", { fontSize: "26vw", top: "12vh", left: "4vw" });
-      set("seven", { fontSize: "18vw", top: "38vh" });
-      set("how", { fontSize: "26vw", top: "20vh", left: "6vw" });
-      set("notLike", { fontSize: "11.5vw", top: "34vh", left: "6vw", maxWidth: "88vw", whiteSpace: "normal" });
-      set("soWhat", { fontSize: "11vw", top: "34vh", left: "6vw", maxWidth: "88vw", whiteSpace: "normal" });
-      set("curate", { fontSize: "11vw", top: "20vh", left: "6vw", maxWidth: "88vw" });
+      set("qWhat", { fontSize: "17vw", left: "6vw", top: "14vh" });
+      set("qIs", { fontSize: "13vw", left: "40vw", top: "26vh" });
+      set("qUnknown", { fontSize: "25vw", left: "-2vw", top: "38vh" });
+      set("who", { fontSize: "34vw", top: "14vh", left: "4vw" });
+      set("portraitA", { left: "22vw", top: "38vh", width: "78vw", height: "56vh" });
+      set("where", { fontSize: "28vw", top: "22vh", left: "5vw" });
+      set("when", { fontSize: "32vw", top: "12vh", left: "4vw" });
+      set("seven", { fontSize: "24vw", top: "38vh" });
+      set("how", { fontSize: "38vw", top: "22vh", left: "6vw" });
+      set("notLike", { fontSize: "17vw", top: "34vh", left: "6vw", whiteSpace: "normal" });
+      set("soWhat", { fontSize: "15vw", top: "34vh", left: "6vw", whiteSpace: "normal" });
+      set("curate", { fontSize: "13vw", top: "20vh", left: "6vw" });
       const cu = e("curate");
       if (cu) {
-        (cu.children[0] as HTMLElement).style.whiteSpace = "normal";
+        (cu.children[0] as HTMLElement).style.whiteSpace = "nowrap";
         Object.assign((cu.children[1] as HTMLElement).style, {
           paddingLeft: "0",
-          fontSize: "1.05em",
-          whiteSpace: "normal",
+          fontSize: "1.1em",
+          whiteSpace: "nowrap",
         });
       }
-      set("manifesto", { top: "56vh", left: "6vw", maxWidth: "88vw" });
-      const mf = e("manifesto");
-      if (mf && mf.children) {
-        Array.from(mf.children).forEach((sp, idx) => {
-          (sp as HTMLElement).style.paddingLeft = idx === 0 ? "0" : idx === 1 ? "1.2em" : "2.4em";
-        });
-      }
-      set("whereL", { right: "5vw", bottom: "3vh", top: "auto", left: "auto", maxWidth: "82vw" });
-      set("sysYou", { fontSize: "20vw" });
-      set("sysVibe", { fontSize: "15vw" });
-      set("sysCur", { fontSize: "12vw", whiteSpace: "normal", maxWidth: "88vw" });
-      set("sysSomeone", { fontSize: "16vw", left: "6vw", maxWidth: "88vw" });
-      set("sysPlace", { fontSize: "16vw", top: "34vh", maxWidth: "88vw" });
-      set("sysDate", { fontSize: "20vw" });
-      set("portraitB", { left: "22vw", top: "38vh", width: "74vw", height: "52vh" });
+      set("manifesto", { top: "58vh" });
+      set("whereL", { right: "5vw", bottom: "3vh", top: "auto", left: "auto", maxWidth: "76vw" });
+      set("sysYou", { fontSize: "28vw" });
+      set("sysVibe", { fontSize: "19vw" });
+      set("sysCur", { fontSize: "15vw", whiteSpace: "normal" });
+      set("sysSomeone", { fontSize: "20vw", left: "6vw" });
+      set("sysPlace", { fontSize: "20vw", top: "34vh" });
+      set("sysDate", { fontSize: "26vw" });
+      set("portraitB", { left: "26vw", top: "40vh", width: "74vw", height: "52vh" });
       set("envB", { left: "4vw", top: "20vh", width: "84vw", height: "54vh" });
-      set("dateB", { left: "8vw", top: "18vh", width: "84vw", height: "58vh" });
-      set("fin1", { fontSize: "7.5vw", top: "30vh", left: "6vw", width: "88vw", maxWidth: "88vw" });
-      set("fin2", { fontSize: "8.5vw", top: "28vh", left: "6vw", width: "88vw", maxWidth: "88vw" });
-      set("thats", { fontSize: "10vw", top: "38vh", left: "6vw", maxWidth: "88vw", whiteSpace: "normal" });
-      set("finSub", { left: "6vw", top: "56vh", maxWidth: "88vw" });
-      set("next", { left: "6vw", maxWidth: "88vw" });
+      set("dateB", { left: "10vw", top: "18vh", width: "80vw", height: "58vh" });
+      set("fin1", { fontSize: "11vw", top: "30vh", left: "7vw", width: "86vw" });
+      set("fin2", { fontSize: "12.5vw", top: "28vh", left: "7vw", width: "86vw" });
+      set("thats", { fontSize: "14vw", top: "38vh", left: "7vw" });
+      set("finSub", { left: "7vw", top: "56vh" });
+      set("next", { left: "7vw" });
       const nx = e("next");
-      if (nx && nx.children[1]) (nx.children[1] as HTMLElement).style.fontSize = "6vw";
+      if (nx && nx.children[1]) (nx.children[1] as HTMLElement).style.fontSize = "8vw";
+      times.forEach((t) => {
+        t.style.fontSize = `${parseFloat(t.style.fontSize || "4") * 1.8}vw`;
+      });
+      mechs.forEach((m) => {
+        m.style.fontSize = `${parseFloat(m.style.fontSize || "3") * 1.7}vw`;
+      });
+      ints.forEach((w) => {
+        w.style.fontSize = `${parseFloat(w.style.fontSize || "4") * 1.8}vw`;
+      });
       envs.forEach((n) => {
-        const curW = parseFloat(n.style.width || "20");
-        const curH = parseFloat(n.style.height || "30");
-        if (!isNaN(curW)) n.style.width = `${curW * 1.5}vw`;
-        if (!isNaN(curH)) n.style.height = `${curH * 1.05}vh`;
+        n.style.width = `${parseFloat(n.style.width || "20") * 1.7}vw`;
+        n.style.height = `${parseFloat(n.style.height || "30") * 1.1}vh`;
       });
       envs.slice(3).forEach((n) => {
         n.style.display = "none";
@@ -474,7 +475,7 @@ export default function Scene02() {
           data-el="qUnknown"
           style={{
             position: "absolute",
-            left: "-2vw",
+            left: "-4vw",
             top: "41vh",
             zIndex: 20,
             opacity: 0,
@@ -488,7 +489,7 @@ export default function Scene02() {
             willChange: "transform, opacity",
           }}
         >
-          UNKNOWN?
+          UNKNWN?
         </div>
         <div
           data-el="qSub"
